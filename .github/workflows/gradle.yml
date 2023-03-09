@@ -42,6 +42,7 @@ jobs:
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v2
       with:
-        context: ./build
+        context: .
+        dockerfile: ./Dockerfile
         push: true
         tags: dockerysf/grdl-prj
