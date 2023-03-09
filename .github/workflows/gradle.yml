@@ -55,5 +55,5 @@ jobs:
         context: .
         push: true
         tags: dockerysf/grdl-prj
-#        builder: docker/buildx-build
+        builder: docker/buildx-build
 
