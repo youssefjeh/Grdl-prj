@@ -1,3 +1,10 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+
 name: Java CI with Gradle
 
 on:
@@ -33,16 +40,23 @@ jobs:
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
 
-    - name: Login to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+ #   - name: Login to Docker Hub
+  #    uses: docker/login-action@v1
+   #   with:
+    #    username: ${{ secrets.DOCKER_USER }}
+     #   password: ${{ secrets.DOCKER_PASSWORD }} */
 
     - name: Build and Push Docker Image
-      uses: docker/build-push-action@v2
+      uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        context: .
-        dockerfile: ./Dockerfile
-        push: true
-        tags: dockerysf/grdl-prj
+        image: dockerysf/grdl-prj
+        registry: docker.io
+      #  dockerfile: Dockerfile.ci
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+#        context: .
+#        push: true
+#       tags: dockerysf/grdl-prj
+#        builder: docker/buildx-build
+
