@@ -49,9 +49,9 @@ jobs:
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
+        dockerfile: ./Dockerfile
         image: dockerysf/grdl-prj
         registry: docker.io
-      #  dockerfile: Dockerfile.ci
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
